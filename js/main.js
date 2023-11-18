@@ -5,7 +5,7 @@ let winner;
 //   1.1) Define a colors object with keys of 'null' (when the square is empty), and players 1 & -1. The value assigned to each key represents the color to display for an empty square (null), player 1 and player -1.
 const colors = {
     0: 'seashell',
-    1: 'white',
+    1: 'grey',
     '-1': 'black'
 }
 //   1.2) Define the 8 possible winning combinations, each containing three indexes of the board that make a winner if they hold the same player value.
@@ -21,6 +21,8 @@ const colors = {
 
 //   3.1) Store the 9 elements that represent the squares on the page.
 const options = [...document.querySelectorAll('#board > div')]
+const playButton = document.querySelector('button')
+const messageEl = document.querySelector('h2')
 // console.log('options \n',options)
 
 // 4) Upon loading the app should:
@@ -33,7 +35,7 @@ function start() {
         [0, 0, 0], //col 1
         [0, 0, 0], //col 2
     ]
-    // render()
+    render()
 }
 start()
 
@@ -52,7 +54,33 @@ function renderBoard() {
         })
     })
 }
-renderBoard()
+
+function renderButton() {
+    playButton.style.visibility = winner ? 'visible' : 'hidden'
+}
+
+function renderTurn() {
+    if (winner === 'T') {
+        MessageEl.onnerText = "It's a Tie!"
+    } else if (winner) {
+        messageEl.innerHTML = `
+        <span style="color: ${colors[winner]}">
+        ${colors[winner].toUpperCase()}
+        </span> Wins!`
+    } else {
+        messageEl.innerHTML = `
+        <span style="color: ${colors[turn]}">
+            ${colors[turn].toUpperCase()}
+        </span>'s Turn!`
+
+    }
+}
+
+function render() {
+    renderBoard()
+    renderTurn()
+    renderButton()
+}
 //     4.1.1) Initialize the board array to 9 nulls to represent empty squares. The 9 elements will "map" to each square, where index 0 maps to the top-left square and index 8 maps to the bottom-right square.
 //     4.1.2) Initialize whose turn it is to 1 (player 'X'). Player 'O' will be represented by -1.
 //     4.1.3) Initialize winner to null to represent that there is no winner or tie yet. Winner will hold the player value (1 or -1) if there's a winner. Winner will hold a 'T' if there's a tie. 
@@ -87,3 +115,4 @@ renderBoard()
 
 // 6) Handle a player clicking the replay button:
 //   6.1) Do steps 4.1 (initialize the state variables) and 4.2 (render).
+playButton.addEventListener('click', start)
