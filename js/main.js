@@ -47,7 +47,6 @@ function renderBoard() {
             // console.log('cellVal', cellVal)
             // console.log('rowIdx', rowIdx)
             const cellId = `v${colIdx}r${rowIdx}`
-            console.log('cellId', cellId)
             const cellEl = document.getElementById(cellId)
             // console.log('cellEl', cellEl)
             cellEl.style.backgroundColor = colors[cellVal]
@@ -82,10 +81,16 @@ function render() {
 }
 
 function game(event) {
-    
+    const colIdx = board.indexOf(event.target)
+    // console.log('this is colIdx inside game', colIdx)
+    const colArr = board[colIdx]
+    // console.log('this is colArr inside game', colArr)
+    const rowIdx = colArr.indexOf(0)
+    if (rowIdx === -1) return
+    colArr[rowIdx] = turn
+    turn *= -1
     render()
 }
-
 
 
 
@@ -135,5 +140,12 @@ function game(event) {
 
 // 6) Handle a player clicking the replay button:
 //   6.1) Do steps 4.1 (initialize the state variables) and 4.2 (render).
-document.getElementById('board').addEventListener('click', game)
+
+
+
+// document.getElementById('board').addEventListener('click', game)
 playButton.addEventListener('click', start)
+
+
+
+document.getElementById('v0r2').addEventListener('click', game)
