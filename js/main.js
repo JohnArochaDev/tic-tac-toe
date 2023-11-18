@@ -1,15 +1,27 @@
 // 1) Define required constants:
+let board;
+let turn;
+let winner;
 //   1.1) Define a colors object with keys of 'null' (when the square is empty), and players 1 & -1. The value assigned to each key represents the color to display for an empty square (null), player 1 and player -1.
+const colors = {
+    0: 'seashell',
+    1: 'white',
+    '-1': 'black'
+}
 //   1.2) Define the 8 possible winning combinations, each containing three indexes of the board that make a winner if they hold the same player value.
 
 // 2) Define required variables used to track the state of the game:
 //   2.1) Use a board array to represent the squares.
 //   2.2) Use a turn variable to remember whose turn it is.
+
 //   2.3) Use a winner variable to represent three different possibilities - player that won, a tie, or game in play.
 
 // 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
-//   3.1) Store the 9 elements that represent the squares on the page.
 
+
+//   3.1) Store the 9 elements that represent the squares on the page.
+const options = [...document.querySelectorAll('#board > div')]
+console.log('options \n',options)
 // 4) Upon loading the app should:
 //   4.1) Initialize the state variables:
 //     4.1.1) Initialize the board array to 9 nulls to represent empty squares. The 9 elements will "map" to each square, where index 0 maps to the top-left square and index 8 maps to the bottom-right square.
