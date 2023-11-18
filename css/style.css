@@ -1,5 +1,13 @@
 * {
     text-align: center;
+    background-color: seashell;
+}
+
+h1 {
+    color: burlywood;
+    font-style: italic;
+    font-size: 10vmin;
+    text-decoration: underline dotted .5vmin lightgray;
 }
 
 td {
@@ -17,10 +25,20 @@ table {
     margin: 5px auto;
 }
 .vert {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-left: 10px dotted lightgray;
+    border-right: 10px dotted lightgray;
 }
 .hori {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 10px dotted lightgray;
+    border-bottom: 10px dotted lightgray;
+}
+
+button {
+    margin-top: 50px;
+    font-weight: 1000;
+    font-size: 2.5vmin;
+    border-radius: 1vmin;
+    background-color: rgb(243, 242, 242);
+    border: solid lightgray;
+    color: burlywood;
 }
