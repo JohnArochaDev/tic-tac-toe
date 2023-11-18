@@ -25,6 +25,7 @@ h1 {
     grid-template-rows: repeat(3, 10vmin);
     gap: 1vmin;
     margin-top: -2vmin;
+    background-color: burlywood;
 }
 
 
