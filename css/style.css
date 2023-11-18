@@ -1,6 +1,14 @@
 * {
-    text-align: center;
+    box-sizing: border-box;
     background-color: seashell;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    height: 100vh;
+    margin: 0;
 }
 
 h1 {
@@ -10,28 +18,15 @@ h1 {
     text-decoration: underline dotted .5vmin lightgray;
 }
 
-td {
-    width: 100px;
-    height: 100px;
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 10vmin);
+    grid-template-rows: repeat(3, 10vmin);
+    gap: 1vmin;
+    margin-top: -2vmin;
 }
-table {
-    margin: 5px auto;
-}
-td {
-    width: 100px;
-    height: 100px;
-}
-table {
-    margin: 5px auto;
-}
-.vert {
-    border-left: 10px dotted lightgray;
-    border-right: 10px dotted lightgray;
-}
-.hori {
-    border-top: 10px dotted lightgray;
-    border-bottom: 10px dotted lightgray;
-}
+
 
 button {
     margin-top: 50px;
