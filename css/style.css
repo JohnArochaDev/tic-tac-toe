@@ -24,9 +24,3 @@ table {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
-
-#first {
-    display: grid;
-    grid-template-columns: 1900px 1fr;
-    grid-template-rows: 150px 1fr;
-  }
