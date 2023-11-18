@@ -1,8 +1,19 @@
+* {
+    text-align: center;
+}
+
 td {
     width: 100px;
     height: 100px;
 }
-body {
+table {
+    margin: 5px auto;
+}
+td {
+    width: 100px;
+    height: 100px;
+}
+table {
     margin: 5px auto;
 }
 .vert {
@@ -13,3 +24,4 @@ body {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
+
