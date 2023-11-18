@@ -45,3 +45,14 @@ button {
     border: solid lightgray;
     color: burlywood;
 }
+
+button:hover {
+    transform: scale(1.5);
+    transition: transform 150ms ease-in;
+}
+
+
+#board>div:hover {
+    transform: scale(.5);
+    transition: transform 150ms ease-in-out;
+}

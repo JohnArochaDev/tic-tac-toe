@@ -31,7 +31,7 @@ function start() {
     turn = 1
     winner = null
     board = [
-        [0, 0, 0], //col 0
+        [0, 0, 0], //col 0 the whole chart is rotated to the right
         [0, 0, 0], //col 1
         [0, 0, 0], //col 2
     ]
@@ -47,7 +47,7 @@ function renderBoard() {
             // console.log('cellVal', cellVal)
             // console.log('rowIdx', rowIdx)
             const cellId = `v${colIdx}r${rowIdx}`
-            // console.log('cellId', cellId)
+            console.log('cellId', cellId)
             const cellEl = document.getElementById(cellId)
             // console.log('cellEl', cellEl)
             cellEl.style.backgroundColor = colors[cellVal]
@@ -61,18 +61,17 @@ function renderButton() {
 
 function renderTurn() {
     if (winner === 'T') {
-        MessageEl.onnerText = "It's a Tie!"
+        MessageEl.innerText = "It's a Tie!"
     } else if (winner) {
         messageEl.innerHTML = `
-        <span style="color: ${colors[winner]}">
-        ${colors[winner].toUpperCase()}
-        </span> Wins!`
+            <span style="color: ${colors[winner]}">
+                ${colors[winner].toUpperCase()}
+            </span> Wins!`
     } else {
         messageEl.innerHTML = `
-        <span style="color: ${colors[turn]}">
-            ${colors[turn].toUpperCase()}
-        </span>'s Turn!`
-
+            <span style="color: ${colors[turn]}">
+                ${colors[turn].toUpperCase()}
+            </span>'s Turn!`
     }
 }
 
@@ -81,6 +80,27 @@ function render() {
     renderTurn()
     renderButton()
 }
+
+function game(event) {
+    
+    render()
+}
+
+
+
+
+
+
+// function game(event) {
+//     const colIdx = board.indexOf(event.target)
+//     const colArr = board[colIdx]
+//     const rowIdx = colArr.indexOf(0)
+//     if (rowIdx === -1) return
+//     colArr[rowIdx] = turn
+//     turn *= -1
+//     winner = getWinner(colIdx, rowIdx)
+//     render()
+// }
 //     4.1.1) Initialize the board array to 9 nulls to represent empty squares. The 9 elements will "map" to each square, where index 0 maps to the top-left square and index 8 maps to the bottom-right square.
 //     4.1.2) Initialize whose turn it is to 1 (player 'X'). Player 'O' will be represented by -1.
 //     4.1.3) Initialize winner to null to represent that there is no winner or tie yet. Winner will hold the player value (1 or -1) if there's a winner. Winner will hold a 'T' if there's a tie. 
@@ -115,4 +135,5 @@ function render() {
 
 // 6) Handle a player clicking the replay button:
 //   6.1) Do steps 4.1 (initialize the state variables) and 4.2 (render).
+document.getElementById('board').addEventListener('click', game)
 playButton.addEventListener('click', start)
