@@ -243,6 +243,7 @@ const play = (e) => {
     e.target.innerText = playerTurn
     playerTurn = playerTurn === "X" ? "O" : "X" 
     checkWinner()
+    renderButton();
 }
 
 board.forEach((box) => {
@@ -258,6 +259,9 @@ function reset(e) {
     winner = false;
 }
 
-
+function renderButton() {
+    playButton = document.querySelector('button')
+    playButton.style.visibility = winner ? 'visible' : 'hidden'
+}
 
 document.querySelector('button').addEventListener('click', (e)=>{reset(e)})
