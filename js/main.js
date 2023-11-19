@@ -29,7 +29,7 @@ const messageEl = document.querySelector('h2')
 //   4.1) Initialize the state variables:
 function start() {
     turn = 1
-    winner = null
+    winner = true
     board = [
         [0, 0, 0], //col 0 the whole chart is rotated to the right
         [0, 0, 0], //col 1
@@ -45,11 +45,12 @@ function renderBoard() {
         // console.log('colIdx', colIdx)
         colArr.forEach((cellVal, rowIdx) => {
             // console.log('cellVal', cellVal)
-            console.log('rowIdx', rowIdx)
+            // console.log('rowIdx', rowIdx)
             const cellId = `v${colIdx}r${rowIdx}`
             const cellEl = document.getElementById(cellId)
             // console.log('cellEl', cellEl)
             cellEl.style.backgroundColor = colors[cellVal]
+            // console.log(cellId)
         })
     })
 }
