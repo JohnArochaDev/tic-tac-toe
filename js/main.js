@@ -254,8 +254,8 @@ function reset(e) {
         board.forEach((e) => {
             e.innerText = ""
         });
-        
     }
+    winner = false;
 }
 
 
