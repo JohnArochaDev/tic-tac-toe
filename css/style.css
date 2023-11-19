@@ -53,6 +53,6 @@ button:hover {
 
 
 #board>div:hover {
-    transform: scale(.5);
+    transform: scale(.9);
     transition: transform 150ms ease-in-out;
 }
