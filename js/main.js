@@ -29,7 +29,7 @@ const messageEl = document.querySelector('h2')
 //   4.1) Initialize the state variables:
 function start() {
     turn = 1
-    winner = true
+    winner = null
     board = [
         [0, 0, 0], //col 0 the whole chart is rotated to the right
         [0, 0, 0], //col 1
@@ -82,20 +82,73 @@ function render() {
 }
 
 function game(event) {
-    const colIdx = board.indexOf(event.target)
-    // console.log('this is colIdx inside game', colIdx)
+    const colIdx  = options.indexOf(event.target);
+    console.log('colIdx', colIdx);
     const colArr = board[colIdx]
-    // console.log('this is colArr inside game', colArr)
     const rowIdx = colArr.indexOf(0)
     if (rowIdx === -1) return
     colArr[rowIdx] = turn
     turn *= -1
+    winner = getWinner(colIdx, rowIdx)
     render()
 }
 
 
+////////////////////////////////////////////////////
 
+function countAdjacent(colIdx, rowIdx, colOffset, rowOffset) {
+    // get the most recently played color
+    const player = board[colIdx][rowIdx]
+    // count how many matches are adjacent
+    let count = 0
+    colIdx += colOffset
+    rowIdx += rowOffset
+    while (
+        board[colIdx] !== undefined && 
+        board[colIdx][rowIdx] !== undefined && 
+        board[colIdx][rowIdx] === player
+    ) {
+        count++
+        colIdx += colOffset
+        rowIdx += rowOffset
+    }
+    console.log('the count in countAdjacent', count)
+    return count
+}
 
+function checkHorizontalWin(colIdx, rowIdx) {
+    const adjCountLeft = countAdjacent(colIdx, rowIdx, -1, 0)
+    const adjCountRight = countAdjacent(colIdx, rowIdx, 1, 0)
+    return adjCountLeft + adjCountRight >= 3 ? board[colIdx][rowIdx] : null
+}
+
+function checkVerticalWinner(colIdx, rowIdx) {
+    return countAdjacent(colIdx, rowIdx, 0, -1) === 3 ? board[colIdx][rowIdx] : null
+}
+
+function checkDiagonalSENWWin(colIdx, rowIdx) {
+    const adjCountNW = countAdjacent(colIdx, rowIdx, -1, 1)
+    const adjCountSE = countAdjacent(colIdx, rowIdx, 1, -1)
+    return adjCountNW + adjCountSE >= 3 ? board[colIdx][rowIdx] : null
+}
+
+function checkDiagonalSWNEWin(colIdx, rowIdx) {
+    const adjCountNE = countAdjacent(colIdx, rowIdx, 1, 1)
+    const adjCountSW = countAdjacent(colIdx, rowIdx, -1, -1)
+    return adjCountNE + adjCountSW >= 3 ? board[colIdx][rowIdx] : null
+}
+
+function getWinner(colIdx, rowIdx) {
+    console.log('this is colIdx - getWinner', colIdx)
+    console.log('this is rowIdx - getWinner', rowIdx)
+    console.log('the board', board)
+    return(
+        checkHorizontalWin(colIdx, rowIdx) ||
+        checkVerticalWinner(colIdx, rowIdx) ||
+        checkDiagonalSENWWin(colIdx, rowIdx) ||
+        checkDiagonalSWNEWin(colIdx, rowIdx)
+    )
+}
 
 // function game(event) {
 //     const colIdx = board.indexOf(event.target)
@@ -148,5 +201,4 @@ function game(event) {
 playButton.addEventListener('click', start)
 
 
-
-document.getElementById('v0r2').addEventListener('click', game)
+document.getElementById('board').addEventListener('click', game)
